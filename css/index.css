@@ -741,3 +741,63 @@ footer b {
 #diagnostico {
   padding-top: 0;
 }
+
+/* Container base do card com transição fluida nativa */
+details.rtc-card {
+    display: grid;
+    grid-template-rows: auto 0fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+    overflow: hidden;
+}
+
+/* Quando aberto, expande o grid perfeitamente para o conteúdo exato */
+details.rtc-card[open] {
+    grid-template-rows: auto 1fr;
+}
+
+/* O summary continua interativo e sem o estilo padrão */
+details.rtc-card summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+}
+
+details.rtc-card summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Seta animada */
+details.rtc-card summary::before {
+    content: '▶';
+    font-size: 0.75rem;
+    color: #1e293b;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+details.rtc-card[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/* Container interno que encapsula o texto para animar junto com o Grid */
+details.rtc-card > *:not(summary) {
+    overflow: hidden;
+}
+
+/* O texto ganha um fade e movimento de deslizamento sincronizado */
+details.rtc-card p {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    margin-top: 0;
+}
+
+details.rtc-card[open] p {
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 12px; /* Espaçamento idêntico ao seu layout original */
+    transition-delay: 0.08s; /* Faz o texto deslizar logo após o card começar a abrir */
+}
