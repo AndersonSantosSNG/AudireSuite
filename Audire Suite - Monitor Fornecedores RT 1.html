@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suite Audire | Monitor Fiscal, Score de Fornecedores e Reforma Tributária</title>
+  <meta name="description" content="A Suite Audire monitora a regularidade fiscal, avalia o risco de fornecedores e audita a Reforma Tributária em um único painel para operações com múltiplos CNPJs.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="SNG Synergroup">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Suite Audire | Risco fiscal, fornecedores e Reforma Tributária">
+  <meta property="og:description" content="Visibilidade contínua para regularidade fiscal, cadeia de fornecedores e transição tributária.">
+  <meta property="og:site_name" content="Audire Suite">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Suite Audire | Monitoramento corporativo de riscos">
+  <meta name="twitter:description" content="Monitore CNPJs, fornecedores e a Reforma Tributária em uma única lógica de controle.">
+  <meta name="theme-color" content="#0A1D31">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Organization",
+        "name":"SNG Synergroup",
+        "url":"https://sng.com.br/",
+        "email":"contato@sng.com.br",
+        "telephone":"+55-11-4521-1661"
+      },
+      {
+        "@type":"SoftwareApplication",
+        "name":"Suite Audire",
+        "applicationCategory":"BusinessApplication",
+        "description":"Plataforma de monitoramento fiscal, risco de fornecedores e Reforma Tributária para operações corporativas.",
+        "operatingSystem":"Web",
+        "provider":{"@type":"Organization","name":"SNG Synergroup"},
+        "offers":{"@type":"Offer","url":"#diagnostico","price":"0","priceCurrency":"BRL","description":"Diagnóstico inicial"}
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"O que é a Suite Audire?","acceptedAnswer":{"@type":"Answer","text":" uma plataforma web que reúne monitoramento fiscal, análise contínua de fornecedores e auditoria da Reforma Tributária para operações corporativas."}},
+          {"@type":"Question","name":"A Suite Audire atende empresas com vários CNPJs?","acceptedAnswer":{"@type":"Answer","text":"Sim. A plataforma foi pensada para grupos empresariais, indústrias, consultorias e contabilidades que precisam consolidar informações de múltiplos CNPJs."}},
+          {"@type":"Question","name":"Quais riscos de fornecedores são avaliados?","acceptedAnswer":{"@type":"Answer","text":"O Score Fornecedores considera dimensões fiscal, jurídica, operacional, financeira e ESG, combinando dados externos com histórico interno."}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Mapeamento e distribuição de animações variadas
+    
+    // Títulos de Seção: Surge de baixo com fade
+    document.querySelectorAll('.section-head, .sng-box').forEach(el => el.classList.add('reveal-fade'));
+
+    // Cards do Hero e Impacto: Entrada intercalada (Esquerda / Direita)
+    document.querySelectorAll('.pain-card, .impact-card, .content-card').forEach((el, index) => {
+      el.classList.add(index % 2 === 0 ? 'reveal-left' : 'reveal-right');
+    });
+
+    // Cards da Suite: Efeito Scale-Up com destaque no card central
+    document.querySelectorAll('.product, .rtc-card, .target').forEach(el => el.classList.add('reveal-scale'));
+
+    // Painel de Score de Fornecedores
+    const scoreBoard = document.querySelector('.score-board');
+    if (scoreBoard) {
+      scoreBoard.classList.add('reveal-scale');
+      // Salva a largura das barras para a animação do JS
+      scoreBoard.querySelectorAll('.bar i').forEach(bar => {
+        bar.style.setProperty('--target-width', bar.style.width);
+      });
+    }
+
+    // 2. Intersection Observer Unificado
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          // Atraso escalonado (Stagger effect) para elementos em grade
+          setTimeout(() => {
+            entry.target.classList.add('active');
+          }, 100);
+
+          // Animação de contagem numérica
+          const counter = entry.target.querySelector('[data-count]');
+          if (counter && !counter.classList.contains('counted')) {
+            counter.classList.add('counted');
+            animateCount(counter);
+          }
+        }
+      });
+    }, { threshold: 0.12 });
+
+    // Registra todos os elementos com animação no Observer
+    document.querySelectorAll('.reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .score-board').forEach(el => observer.observe(el));
+
+    // 3. Função de contagem dos números
+    function animateCount(el) {
+      const target = +el.getAttribute('data-count');
+      let current = 0;
+      const step = Math.ceil(target / 45);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = current;
+        }
+      }, 25);
+    }
+  });
+</script>
+
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#inicio" aria-label="Audire Suite">
+        <img class="audire-logo" src="./imagens/logo-audire.png" alt="SNG Audire">
+      </a>
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#observabilidade">Por que Audire?</a>
+        <a href="#suite">A Suite</a>
+        <a href="#monitor">O Monitor</a>
+        <a href="#fornecedores">Fornecedores</a>
+        <a href="#reforma">Reforma Tributária</a>
+      </nav>
+      <a class="header-cta" href="#diagnostico">Solicitar diagnóstico</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-eyebrow"><i></i> Rastreabilidade · Observabilidade · Inteligência de risco</div>
+          <h1>Antecipe riscos antes que eles <span>impactem o negócio.</span></h1>
+          <p class="hero-copy">
+            A Audire Suite monitora continuamente a regularidade fiscal, a cadeia de fornecedores e os impactos da Reforma Tributária, transformando eventos dispersos em histórico, alertas e inteligência para decisão.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#diagnostico">Identificar meus pontos de risco </a>
+            <a class="btn secondary" href="#suite">Conhecer a Suite Audire</a>
+          </div>
+
+          <div class="hero-proof">
+            <span><i></i> Operações multi-CNPJ</span>
+            <span><i></i> Monitoramento contínuo</span>
+            <span><i></i> Histórico auditável</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="radar">
+            <div class="radar-line"></div>
+            <span class="radar-dot rd1"></span><span class="radar-dot rd2"></span><span class="radar-dot rd3"></span>
+            <div class="radar-center"><div><strong>Audire</strong><small>observabilidade de risco</small></div></div>
+          </div>
+
+          <div class="signal sg1"><span class="tag">Monitor</span><b>Evento fiscal crítico</b><small>Alerta + histórico</small></div>
+          <div class="signal sg2"><span class="tag">Fornecedores</span><b>Risco em evolução</b><small>Score multidimensional</small></div>
+          <div class="signal sg3"><span class="tag">Reforma Tributária</span><b>Divergência detectada</b><small>Auditoria + consolidação</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">O risco que você já paga</span>
+            <h2>Quanto custa descobrir tarde?</h2>
+          </div>
+          <p>
+            Grandes operações acumulam pontos cegos entre portais, fornecedores, CNPJs, documentos, apuração e controles manuais. A Audire foi criada para tornar esses riscos observáveis.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+          <article class="impact-card">
+            <strong data-count="161">0</strong>
+            <p>classificações tributárias citadas no material da Reforma exigem acompanhamento contínuo.</p>
+            <small>Monitoramento normativo</small>
+          </article>
+          <article class="impact-card">
+            <strong>R$ 250 mil</strong>
+            <p>cenário ilustrativo de créditos bloqueados/mês apresentado no material comercial.</p>
+            <small>Compras de R$ 50 mi/mês no cenário apresentado</small>
+          </article>
+          <article class="impact-card">
+            <strong>2/dia</strong>
+            <p>limite de chamadas por CNPJ indicado para a API oficial no cenário da Apuração Assistida.</p>
+            <small>Escala multi-CNPJ</small>
+          </article>
+          <article class="impact-card">
+            <strong>1</strong>
+            <p>fornecedor crítico pode impactar prazo, produção, caixa, crédito e reputação.</p>
+            <small>Risco da cadeia</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Sintomas</span>
+            <h2>Você reconhece algum destes sinais?</h2>
+          </div>
+          <p>O ponto de partida não é o software.  a exposição que hoje depende de pessoas, consultas e controles fragmentados.</p>
+        </div>
+
+        <div class="pain-grid">
+          <article class="pain-card"><span class="pain-index">01</span><h3>Equipe entrando diariamente em vários portais</h3><p>Tempo especializado consumido por checagem e conferência manual.</p></article>
+          <article class="pain-card"><span class="pain-index">02</span><h3>Sem visão única de todos os CNPJs</h3><p>Filiais e empresas do grupo acompanhadas em rotinas e planilhas diferentes.</p></article>
+          <article class="pain-card"><span class="pain-index">03</span><h3>Homologação com informação fragmentada</h3><p>Fornecedor aprovado sem leitura consolidada do risco real para a operação.</p></article>
+          <article class="pain-card"><span class="pain-index">04</span><h3>Problemas descobertos depois do impacto</h3><p>O alerta chega quando já existe retrabalho, contingência ou perda.</p></article>
+          <article class="pain-card"><span class="pain-index">05</span><h3>Reforma Tributária acompanhada manualmente</h3><p>Mudanças normativas, apuração e créditos exigindo atenção crescente da equipe.</p></article>
+          <article class="pain-card"><span class="pain-index">06</span><h3>Histórico espalhado entre pessoas e sistemas</h3><p>Difícil responder o que mudou, quando mudou, qual o risco e qual ação foi tomada.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="observabilidade">
+      <div class="container obs-grid">
+        <div class="obs-copy">
+          <span class="kicker">Mais do que consulta</span>
+          <h2>Consulta mostra uma fotografia. Observabilidade mostra a evolução.</h2>
+          <p>
+            A Audire acompanha continuamente eventos relevantes e mantém o histórico necessário para transformar alterações em contexto, risco e decisão.
+          </p>
+          <div class="obs-list">
+            <div class="obs-item"><span class="check"></span><div><b>Rastreabilidade</b><br><span style="color:#71818F">Saiba o que aconteceu, quando e em qual empresa ou fornecedor.</span></div></div>
+            <div class="obs-item"><span class="check"></span><div><b>Observabilidade</b><br><span style="color:#71818F">Entenda o que está mudando e onde o risco está aumentando.</span></div></div>
+            <div class="obs-item"><span class="check"></span><div><b>Inteligência</b><br><span style="color:#71818F">Priorize o que exige ação e leve informação executiva para a decisão.</span></div></div>
+          </div>
+        </div>
+
+        <div class="flow">
+          <span class="kicker">Como a Audire enxerga o risco</span>
+          <h3>Do evento à decisão.</h3>
+          <div class="flow-row">
+            <div class="flow-step"><div><b>Evento</b>algo muda</div></div>
+            <div class="flow-step"><div><b>Histórico</b>o rastro fica</div></div>
+            <div class="flow-step"><div><b>Monitor</b>acompanha</div></div>
+            <div class="flow-step"><div><b>Risco</b>classifica</div></div>
+            <div class="flow-step"><div><b>Alerta</b>prioriza</div></div>
+            <div class="flow-step"><div><b>Ação</b>decide</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="suite">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Suite Audire</span>
+            <h2>Três frentes de risco. Uma única lógica de controle.</h2>
+          </div>
+          <p>Ative a frente que sua empresa precisa hoje e evolua para uma visão integrada de regularidade, cadeia e transição tributária.</p>
+        </div>
+
+        <div class="suite-grid">
+          <article class="product">
+            <div class="product-code">MO</div>
+            <span class="label">Audire Monitor</span>
+            <h3>Observe continuamente a regularidade da operação.</h3>
+            <p>Compliance fiscal automatizado nas esferas federal, estadual e municipal.</p>
+            <ul>
+              <li>Painel corporativo multi-CNPJ</li>
+              <li>e-CAC, Sefaz e Prefeituras</li>
+              <li>CNDs e histórico sob guarda digital</li>
+              <li>PER/DCOMP, DET e rotinas automatizadas</li>
+              <li>Alertas por criticidade</li>
+            </ul>
+            <details>
+              <summary>Onde gera valor</summary>
+              <p>Reduz consultas manuais, aumenta a governança e ajuda a antecipar pendências, intimações e riscos de regularidade.</p>
+            </details>
+            <a class="link" href="#diagnostico">Avaliar minha operação </a>
+          </article>
+
+          <article class="product orange">
+            <div class="product-code">SF</div>
+            <span class="label">Audire Fornecedores</span>
+            <h3>Transforme sua cadeia em uma operação observável.</h3>
+            <p>Risco da cadeia analisado com dados externos e histórico interno da empresa.</p>
+            <ul>
+              <li>Score fiscal, jurídico, operacional, financeiro e ESG</li>
+              <li>Histórico de atrasos, falhas e reincidências</li>
+              <li>Priorização de fornecedores críticos</li>
+              <li>Apoio à homologação e renovação</li>
+              <li>Evolução do fornecedor ao longo do tempo</li>
+            </ul>
+            <details>
+              <summary>Onde gera valor</summary>
+              <p>Reduz risco de ruptura, melhora a homologação e cria evidência para decisões de compras, compliance e gestão da cadeia.</p>
+            </details>
+            <a class="link" href="#fornecedores">Ver a lógica de Score </a>
+          </article>
+
+          <article class="product featured">
+            <div class="product-code">RT</div>
+            <span class="label">Audire Reforma Tributária</span>
+            <h3>Torne a transição tributária monitorável e auditável.</h3>
+            <p>Auditoria, consolidação e monitoramento da Reforma Tributária do Consumo.</p>
+            <ul>
+              <li>Score de elegibilidade de crédito por fornecedor</li>
+              <li>Consolidação multi-CNPJ</li>
+              <li>Monitor do Simples Nacional</li>
+              <li>Atualizações normativas RTC</li>
+              <li>Auditoria da Apuração Assistida</li>
+            </ul>
+            <details>
+              <summary>Onde gera valor</summary>
+              <p>Atua sobre riscos de crédito, divergências, escala multi-CNPJ e acompanhamento da transição tributária.</p>
+            </details>
+            <a class="link" href="#reforma">Explorar a solução </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" aria-labelledby="monitor-detalhes" id="monitor">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Audire Monitor</span>
+            <h2 id="monitor-detalhes">Compliance fiscal contínuo para todos os seus CNPJs.</h2>
+          </div>
+          <p>Centralize mensagens, certidões e obrigações das esferas federal, estadual e municipal em uma rotina auditável e priorizada.</p>
+        </div>
+        <div class="content-grid">
+          <article class="content-card"><span class="num">01</span><h3>Painel corporativo</h3><p>Visão única de todas as filiais, empresas do grupo e mensagens fiscais, com alertas por criticidade.</p></article>
+          <article class="content-card"><span class="num">02</span><h3>Prevenção proativa</h3><p>Identifique omissões, intimações, malha fina e prazos antes que se transformem em multas ou bloqueios.</p></article>
+          <article class="content-card"><span class="num">03</span><h3>Certidões sob guarda</h3><p>Monitore CNDs federais, estaduais, TST e FGTS, mantendo o histórico necessário para auditorias.</p></article>
+          <article class="content-card"><span class="num">04</span><h3>PER/DCOMP automatizado</h3><p>Programe consultas e acompanhe créditos, débitos e situações fiscais diretamente no e-CAC.</p></article>
+          <article class="content-card"><span class="num">05</span><h3>DET e consignados</h3><p>Centralize exigências do Ministério do Trabalho e rotinas de consignados em todos os CNPJs.</p></article>
+          <article class="content-card"><span class="num">06</span><h3>Comunicações estaduais</h3><p>Consolide Caixas Postais Estaduais da Sefaz em um único fluxo de acompanhamento.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="reforma-cenario">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Reforma Tributária do Consumo</span>
+            <h2 id="reforma-cenario">A transição exige auditoria, consolidação e contexto.</h2>
+          </div>
+          <p>CBS e IBS convivem com tributos atuais durante anos. O Audire complementa Receita Federal, ERP e emissores de DF-e para reduzir divergências e proteger créditos.</p>
+        </div>
+        <div class="content-grid">
+          <article class="content-card"><span class="num">2026</span><h3>Ano de teste</h3><p>CBS e IBS entram em cena, enquanto o DF-e ganha importância na Apuração Assistida. A alíquota de teste indicada é de 1%.</p></article>
+          <article class="content-card"><span class="num">20272033</span><h3>Convivência gradual</h3><p>Tributos antigos e novos convivem, exigindo reclassificação, acompanhamento normativo e análise contínua de impacto.</p></article>
+          <article class="content-card"><span class="num">GAP</span><h3>O que precisa ser cruzado</h3><p>Relacione DF-e, Apuração Assistida, fornecedores, CNPJs e regras oficiais para encontrar omissões e inconsistências antes do fechamento.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="audire-diferenciais">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Diferenciais Audire</span>
+            <h2 id="audire-diferenciais">Dados dispersos viram uma decisão executiva.</h2>
+          </div>
+          <p>Uma plataforma para empresas, indústrias, consultorias e contabilidades que precisam escalar controle sem escalar checagem manual.</p>
+        </div>
+        <div class="content-grid">
+          <article class="content-card"><span class="num">01</span><h3>Orquestração multi-CNPJ</h3><p>Organize consultas e consolide grupos complexos respeitando limites operacionais das fontes oficiais.</p></article>
+          <article class="content-card"><span class="num">02</span><h3>Cruzamento de dados</h3><p>Combine dados externos, histórico interno, DF-e e ERP para uma leitura mais próxima do risco real.</p></article>
+          <article class="content-card"><span class="num">03</span><h3>Alertas acionáveis</h3><p>Priorize deterioração, divergências e eventos críticos com histórico e evidências para agir.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="fornecedores">
+      <div class="container">
+        <div class="score-shell">
+          <div class="score-copy">
+            <span class="kicker">Audire Fornecedores</span>
+            <h2>O fornecedor pode parecer saudável no mercado. Mas como ele performa dentro da sua empresa?</h2>
+            <p>
+              A diferença está em combinar sinais externos com o histórico interno. O resultado não é uma consulta de CNPJ  é uma leitura contínua do risco que aquele fornecedor representa para a operação.
+            </p>
+            <a class="btn primary" href="#diagnostico">Mapear fornecedores críticos</a>
+          </div>
+
+          <div class="score-board">
+            <div class="score-head">
+              <div class="score-total"><small>Score consolidado</small><br><strong>82</strong><small>/100</small></div>
+              <span class="risk-pill">Risco moderado</span>
+            </div>
+            <div class="score-bars">
+              <div class="bar-row"><span>Fiscal</span><div class="bar"><i style="width:91%"></i></div><b>91</b></div>
+              <div class="bar-row"><span>Jurídico</span><div class="bar"><i style="width:74%"></i></div><b>74</b></div>
+              <div class="bar-row"><span>Operacional</span><div class="bar"><i style="width:89%"></i></div><b>89</b></div>
+              <div class="bar-row"><span>Financeiro</span><div class="bar"><i style="width:68%"></i></div><b>68</b></div>
+              <div class="bar-row"><span>ESG</span><div class="bar"><i style="width:84%"></i></div><b>84</b></div>
+            </div>
+            <div class="score-alert"><b>Exemplo de leitura executiva:</b><br>Atenção para deterioração financeira. Se o fornecedor for crítico para a produção, revisar dependência, limite e plano de contingência.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reforma">
+      <div class="container rtc-grid">
+        <div class="rtc-copy">
+          <span class="kicker">Audire Reforma Tributária</span>
+          <h2>A Reforma muda mais do que o cálculo. Muda risco, crédito e caixa.</h2>
+          <p>
+            A Audire complementa Receita Federal, ERPs e emissores de DF-e com uma camada de consolidação, auditoria e observabilidade da transição.
+          </p>
+          <a class="btn primary" href="#diagnostico">Avaliar impacto na minha empresa</a>
+        </div>
+
+        <div class="rtc-modules">
+          <article class="rtc-card"><span class="rtc-num">01</span><b>Fornecedores Críticos</b><p>Score de elegibilidade de crédito por fornecedor, apoiando a leitura de risco sobre créditos.</p></article>
+          <article class="rtc-card"><span class="rtc-num">02</span><b>Consolidação Multi-CNPJ</b><p>Orquestra consultas e consolida o ciclo de créditos em grupos com múltiplas empresas.</p></article>
+          <article class="rtc-card"><span class="rtc-num">03</span><b>Monitor do Simples Nacional</b><p>Compara cenários e apoia a avaliação de permanência ou migração de regime.</p></article>
+          <article class="rtc-card"><span class="rtc-num">04</span><b>Atualizações Normativas</b><p>Acompanha fontes oficiais e alterações relevantes para a RTC e o portfólio da empresa.</p></article>
+          <article class="rtc-card"><span class="rtc-num">05</span><b>Auditor de Consistência</b><p>Cruza DF-e autorizados com a Apuração Assistida para identificar omissões e divergências antes do fechamento.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Valor para o negócio</span>
+            <h2>Menos exposição. Menos trabalho manual. Mais governança.</h2>
+          </div>
+          <p>Para justificar um investimento corporativo, a tecnologia precisa tocar custo, risco, produtividade ou caixa.</p>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="benefit"><span class="ico"></span><b>Proteja o caixa</b><p>Reduza exposição a perdas, bloqueios, contingências e riscos tributários.</p></article>
+          <article class="benefit"><span class="ico"></span><b>Reduza custo operacional</b><p>Retire equipes qualificadas de consultas, checagens e consolidações repetitivas.</p></article>
+          <article class="benefit"><span class="ico"></span><b>Reduza risco da cadeia</b><p>Enxergue deterioração e criticidade de fornecedores antes do impacto operacional.</p></article>
+          <article class="benefit"><span class="ico"></span><b>Aumente governança</b><p>Histórico, critérios, alertas e evidências organizados para gestão e auditoria.</p></article>
+        </div>
+        <div class="quote-grid" style="margin-top:18px">
+          <blockquote class="quote"><p>O painel único transforma a rotina de compliance em uma visão clara do que precisa de ação.</p><b>Gerente de Controladoria</b><small>Grupo com múltiplos CNPJs</small></blockquote>
+          <blockquote class="quote"><p>A homologação de fornecedores passa a ser baseada em dados, histórico e evolução.</p><b>Diretor de Suprimentos</b><small>Indústria de médio porte</small></blockquote>
+          <blockquote class="quote"><p>A tecnologia tira a equipe da checagem repetitiva e devolve tempo para a decisão.</p><b>CFO</b><small>Operação corporativa</small></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Para quem é</span>
+            <h2>Feito para operações onde perder visibilidade custa caro.</h2>
+          </div>
+          <p>O foco da Audire é corporativo: grupos empresariais, indústrias e operações complexas com múltiplos CNPJs, fornecedores e obrigações.</p>
+        </div>
+
+        <div class="target-grid">
+          <article class="target"><b>Fiscal & Tributário</b><p>Consolidação, monitoramento, auditoria e redução de trabalho manual.</p></article>
+          <article class="target"><b>Suprimentos & Procurement</b><p>Homologação baseada em risco e acompanhamento contínuo da cadeia.</p></article>
+          <article class="target"><b>Compliance & Riscos</b><p>Critérios, histórico e evidências para governança e auditoria.</p></article>
+          <article class="target"><b>CFO & Diretoria</b><p>Visão executiva da exposição, priorização e impacto potencial no negócio.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="sng-box">
+          <div>
+            <img class="sng-copy-logo" src="./imagens/logo-sng.png" alt="SNG Syner Group">
+            <span class="kicker">A tecnologia por trás da Audire</span>
+            <h2>Tecnologia para operações onde falhar custa caro.</h2>
+            <p>
+              A Suite Audire faz parte da estratégia SNG de Rastreabilidade, Observabilidade e Inteligência. A experiência do grupo em tecnologia, RPA, integração e aplicações corporativas sustenta uma plataforma pensada para processos complexos e operações de maior criticidade.
+            </p>
+          </div>
+          <div class="sng-metrics">
+            <div class="metric"><strong>20+</strong><span>anos de Grupo Synergroup em tecnologia</span></div>
+            <div class="metric"><strong>3</strong><span>frentes: Monitor, Fornecedores e Reforma Tributária</span></div>
+            <div class="metric"><strong>5</strong><span>dimensões de risco por fornecedor</span></div>
+            <div class="metric"><strong>5</strong><span>módulos de inteligência fiscal RTC</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Dúvidas frequentes</span>
+            <h2>Controle fiscal e risco corporativo em uma única plataforma.</h2>
+          </div>
+          <p>Entenda rapidamente onde a Suite Audire se encaixa na rotina de grupos empresariais e operações com múltiplos CNPJs.</p>
+        </div>
+        <div class="rtc-modules">
+          <details class="rtc-card"><summary>O que é a Suite Audire?</summary><p> uma plataforma web que reúne monitoramento fiscal, análise contínua de fornecedores e auditoria da Reforma Tributária.</p></details>
+          <details class="rtc-card"><summary>A Audire atende empresas com vários CNPJs?</summary><p>Sim. A solução consolida informações para grupos empresariais, indústrias, consultorias e contabilidades.</p></details>
+          <details class="rtc-card"><summary>Quais riscos de fornecedores são avaliados?</summary><p>O Score Fornecedores considera as dimensões fiscal, jurídica, operacional, financeira e ESG, combinando dados externos com histórico interno.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="diagnostico">
+      <div class="container">
+        <div class="cta-shell">
+          <div>
+            <span class="kicker">Diagnóstico Audire</span>
+            <h2>Descubra onde sua empresa está exposta.</h2>
+            <p>
+              Selecione uma operação, grupo de CNPJs ou carteira de fornecedores e converse com a SNG sobre pontos de risco, esforço manual e oportunidades de observabilidade.
+            </p>
+          </div>
+
+          <form class="form" onsubmit="event.preventDefault();document.getElementById('form-msg').textContent='Formulário pronto para integração com CRM / RD Station / endpoint comercial.';">
+            <div class="form-grid">
+              <input type="text" placeholder="Nome" required>
+              <input type="text" placeholder="Empresa" required>
+            </div>
+            <div class="form-grid">
+              <input type="email" placeholder="E-mail corporativo" required>
+              <input type="text" placeholder="Cargo">
+            </div>
+            <div class="form-grid">
+              <select>
+                <option value="">Quantidade de CNPJs</option>
+                <option>15</option><option>620</option><option>2150</option><option>51100</option><option>100+</option>
+              </select>
+              <select>
+                <option value="">Fornecedores ativos</option>
+                <option>Até 100</option><option>101500</option><option>5012.000</option><option>2.00110.000</option><option>10.000+</option>
+              </select>
+            </div>
+            <select>
+              <option value="">Principal interesse</option>
+              <option>Audire Monitor</option>
+              <option>Audire Fornecedores</option>
+              <option>Audire Reforma Tributária</option>
+              <option>Suite completa</option>
+            </select>
+            <textarea placeholder="Conte brevemente o principal desafio da sua operação."></textarea>
+            <button class="btn primary" type="submit">Solicitar avaliação</button>
+            <small>Ao enviar, você concorda em ser contatado pela equipe comercial da SNG sobre a Suite Audire.</small>
+            <div id="form-msg"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-audire" src="./imagens/logo-audire.png" alt="Audire">
+          <p>Rastreabilidade e observabilidade de riscos fiscais, fornecedores e Reforma Tributária.</p>
+        </div>
+        
+        <div>
+          <b>Suite Audire</b>
+          <a href="#monitor">Monitor</a>
+          <a href="#fornecedores">Fornecedores</a>
+          <a href="#reforma">Reforma Tributária</a>
+        </div>
+
+        <div>
+          <b>Ações</b>
+          <a href="#diagnostico" class="footer-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Solicitar diagnóstico
+          </a>
+          <a href="https://lp.audirecont.com.br/agendar-demo-audirecorp" target="_blank" rel="noopener" class="footer-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Agendar demonstração
+          </a>
+        </div>
+
+        <div>
+  <b>Contato & Redes</b>
+  <a href="https://wa.me/5511984133148" target="_blank" rel="noopener" class="footer-link-icon">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884"/>
+    </svg>
+    WhatsApp: (11) 98413-3148
+  </a>
+
+  <a href="mailto:contato@sng.com.br" class="footer-link-icon">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    contato@sng.com.br
+  </a>
+
+  <a href="https://sistemasaudire.com.br/" target="_blank" rel="noopener" class="footer-link-icon">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    sistemasaudire.com.br
+  </a>
+  
+  <div class="social-links">
+    <a href="https://www.linkedin.com/company/audirecont/home/" target="_blank" rel="noopener" aria-label="LinkedIn Audire" class="social-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.75a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9Z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://www.instagram.com/audireoficial/" target="_blank" rel="noopener" aria-label="Instagram Audire" class="social-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @audireoficial
+    </a>
+  </div>
+</div>
+      </div>
+
+      <div class="footer-bottom">
+        <img class="footer-sng" src="./imagens/logo-sng.png" alt="SNG Syner Group">
+        <span>© 2026 SNG Synergroup. Todos os direitos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navegação mobile">
+    <a href="#suite"><b>Suite</b>Produtos</a>
+    <a href="#fornecedores"><b>Score</b>Fornecedores</a>
+    <a href="#diagnostico"><b>Falar</b>Diagnóstico</a>
+  </nav>
+
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <a href="https://wa.me/5511984133148?text=Ol%C3%A1%2C%20acessei%20o%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Audire!" 
+    target="_blank" 
+    rel="noopener" 
+    class="whatsapp-float" 
+    aria-label="Falar no WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.99c-.002 5.45-4.437 9.884-9.885 9.884"/>
+    </svg>
+  </a>
+
+  <script>
+    const counters=document.querySelectorAll('[data-count]');
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting) return;
+        const el=entry.target,target=Number(el.dataset.count||0),start=performance.now(),duration=1100;
+        const tick=(now)=>{
+          const p=Math.min((now-start)/duration,1),eased=1-Math.pow(1-p,3);
+          el.textContent=Math.round(target*eased).toLocaleString('pt-BR');
+          if(p<1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick); io.unobserve(el);
+      });
+    },{threshold:.45});
+    counters.forEach(c=>io.observe(c));
+  </script>
+</body>
+</html>
