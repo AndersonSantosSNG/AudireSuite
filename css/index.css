@@ -97,15 +97,20 @@ button,input,textarea,select{font:inherit}
     background:var(--orange2);
 }
 
-/* HERO */
+/* HERO AJUSTADO PARA CABER NO DISPLAY */
 .hero{
-    min-height:calc(100vh - 74px);
-    padding:78px 0 68px;color:#fff;display:flex;align-items:center;
-    position:relative;overflow:hidden;
+    min-height: calc(100vh - 74px);
+    height: auto;
+    padding: 35px 0 35px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
     background:
-    radial-gradient(circle at 83% 18%,rgba(45,103,155,.44),transparent 27%),
-    radial-gradient(circle at 73% 78%,rgba(255,100,0,.13),transparent 25%),
-    linear-gradient(145deg,#061522 0%,#0A2138 51%,#0A1D31 100%);
+    radial-gradient(circle at 83% 18%, rgba(45,103,155,.44), transparent 27%),
+    radial-gradient(circle at 73% 78%, rgba(255,100,0,.13), transparent 25%),
+    linear-gradient(145deg, #061522 0%, #0A2138 51%, #0A1D31 100%);
 }
 .hero:before{
     content:"";position:absolute;width:560px;height:560px;border:82px solid rgba(255,255,255,.032);
@@ -117,18 +122,52 @@ button,input,textarea,select{font:inherit}
     border-radius:50%;right:17%;bottom:-130px;
     animation: float 8s ease-in-out infinite alternate;
 }
-.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:center}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;color:#D5E1EB;font-weight:800;font-size:.8rem;letter-spacing:.13em;text-transform:uppercase}
+.hero-grid{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:32px;
+    align-items:center;
+}
+.hero-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#D5E1EB;
+    font-weight:800;
+    font-size:.75rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+}
 .hero-eyebrow i{
     width:9px;height:9px;border-radius:50%;background:var(--orange);
     box-shadow:0 0 22px rgba(255,100,0,.62);
     animation: blink 2s infinite ease-in-out;
 }
-.hero h1{font-size:clamp(3.05rem,6.3vw,6.1rem);line-height:.93;letter-spacing:-.067em;margin:20px 0 22px;max-width:860px}
+.hero h1{
+    font-size:clamp(2.4rem, 4.2vw, 4.2rem);
+    line-height:1.02;
+    letter-spacing:-.055em;
+    margin:10px 0 14px;
+    max-width:780px;
+}
 .hero h1 span{color:var(--orange)}
-.hero-copy{font-size:1.13rem;color:#BDCBD8;max-width:720px;margin:0}
+.hero-copy{
+    font-size:1rem;
+    color:#BDCBD8;
+    max-width:650px;
+    margin:0;
+    line-height:1.45;
+}
 
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
 .btn{
     min-height:50px;padding:0 20px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;
     gap:8px;border:1px solid transparent;font-weight:900;cursor:pointer;
@@ -140,18 +179,38 @@ button,input,textarea,select{font:inherit}
 .btn.secondary{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.15);color:#fff}
 .btn.secondary:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
 
-.hero-proof{display:flex;gap:21px;flex-wrap:wrap;margin-top:26px;color:#C1CFDA;font-size:.84rem}
+.hero-proof{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:18px;
+    color:#C1CFDA;
+    font-size:.81rem;
+}
 .hero-proof span{display:flex;align-items:center;gap:8px}
 .hero-proof i{
     width:7px;height:7px;border-radius:50%;background:var(--green);
     box-shadow: 0 0 10px rgba(50,199,131,0.6);
 }
 
-.hero-visual{min-height:500px;position:relative;display:grid;place-items:center}
+/* HERO VISUAL & RADAR AJUSTADOS */
+.hero-visual{
+    min-height:420px;
+    position:relative;
+    display:grid;
+    place-items:center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
 .radar{
-    width:330px;height:330px;border-radius:50%;position:relative;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    position:relative;
     background:radial-gradient(circle,rgba(73,139,193,.19),rgba(7,26,45,.15) 62%,transparent 64%);
-    border:1px solid rgba(255,255,255,.09);box-shadow:0 0 100px rgba(57,123,178,.16);
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 0 80px rgba(57,123,178,.16);
     animation:float 6s ease-in-out infinite;
 }
 .radar:before,.radar:after{
@@ -167,8 +226,16 @@ button,input,textarea,select{font:inherit}
 .rd1{top:46px;left:78px} .rd2{right:56px;top:120px;background:var(--blue2);box-shadow:0 0 20px rgba(75,139,193,.7); animation-delay: 0.6s;} .rd3{bottom:60px;left:82px;background:var(--green);box-shadow:0 0 20px rgba(50,199,131,.55); animation-delay: 1.2s;}
 
 .signal{
-    min-width:185px;position:absolute;padding:15px 16px;border-radius:16px;
-    background:rgba(13,41,70,.87);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);box-shadow:var(--shadow);
+    min-width:150px;
+    max-width:210px;
+    position:absolute;
+    padding:10px 12px;
+    border-radius:14px;
+    background:rgba(13,41,70,.92);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    box-shadow:var(--shadow);
+    font-size: 0.81rem;
     transition: all 0.4s ease;
 }
 .signal:hover {
@@ -176,11 +243,12 @@ button,input,textarea,select{font:inherit}
     border-color: rgba(255,100,0,.4);
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
-.signal .tag{font-size:.67rem;color:var(--orange);font-weight:900;letter-spacing:.12em;text-transform:uppercase}
-.signal b{display:block;margin-top:3px;font-size:.98rem} .signal small{color:#9FB0C0}
-.sg1{left:-4px;top:52px; animation: float 5s ease-in-out infinite alternate;} 
-.sg2{right:-12px;top:178px; animation: float 6s ease-in-out 1s infinite alternate;} 
-.sg3{left:38px;bottom:34px; animation: float 5.5s ease-in-out 0.5s infinite alternate;}
+.signal .tag{font-size:.62rem;color:var(--orange);font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.signal b{display:block;margin-top:2px;font-size:.9rem} 
+.signal small{color:#9FB0C0;font-size:0.75rem}
+.sg1{left:0px;top:10px; animation: float 5s ease-in-out infinite alternate;} 
+.sg2{right:0px;top:120px; animation: float 6s ease-in-out 1s infinite alternate;} 
+.sg3{left:10px;bottom:0px; animation: float 5.5s ease-in-out 0.5s infinite alternate;}
 
 /* IMPACT */
 .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -412,13 +480,12 @@ footer b {
     align-items: center;
     gap: 9px;
     margin: 6px 0;
-    color: #8295A5 !important; /* Cor fixa */
+    color: #8295A5 !important;
     font-size: 0.86rem;
     text-decoration: none;
     transition: transform 0.25s ease !important;
 }
 
-/* HOVER APENAS COM DESLOCAMENTO E LEVE ESCALA (SEM MUDAR DE COR) */
 .footer-link-icon:hover,
 .social-icon:hover {
     transform: translateX(4px) !important;
@@ -429,7 +496,6 @@ footer b {
     transform: scale(1.12);
 }
 
-/* CONTAINER DE REDES SOCIAIS */
 .social-links {
     display: flex;
     flex-direction: column;
@@ -439,7 +505,6 @@ footer b {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* BASE INFERIOR DO FOOTER */
 .footer-bottom {
     margin-top: 34px;
     padding-top: 22px;
@@ -510,8 +575,8 @@ footer b {
     .hero-visual{min-height:350px;margin-top:12px}
     .radar{width:235px;height:235px}
     .radar:after{inset:-28px}
-    .signal{min-width:145px;padding:12px;transform:scale(.87)}
-    .sg1{left:-18px;top:28px} .sg2{right:-28px;top:132px} .sg3{left:12px;bottom:19px}
+    .signal{min-width:145px;max-width:180px;padding:12px;transform:scale(.87)}
+    .sg1{left:0px;top:28px} .sg2{right:0px;top:132px} .sg3{left:6px;bottom:19px}
     .impact-grid,.pain-grid,.benefit-grid,.target-grid{grid-template-columns:1fr}
     .flow-row{grid-template-columns:repeat(2,1fr)}
     .score-shell,.sng-box,.cta-shell{padding:22px}
@@ -523,7 +588,7 @@ footer b {
     .sng-metrics{grid-template-columns:1fr 1fr}
     .form-grid{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr}
-    footer{padding-bottom:96px}
+    .footer{padding-bottom:96px}
     .mobile-nav{
     display:grid;grid-template-columns:repeat(3,1fr);position:fixed;left:0;right:0;bottom:0;z-index:90;
     background:rgba(7,26,45,.97);backdrop-filter:blur(15px);border-top:1px solid rgba(255,255,255,.09)
@@ -531,6 +596,7 @@ footer b {
     .mobile-nav a{padding:11px 4px;text-align:center;color:#D3DEE7;font-size:.69rem}
     .mobile-nav a b{display:block;color:var(--orange);font-size:.73rem}
 }
+
 /* BOTÃO FLUTUANTE ADAPTÁVEL AO FUNDO */
 .whatsapp-float {
     position: fixed;
@@ -540,25 +606,19 @@ footer b {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    
-    /* Fundo dinâmico usando mesclagem */
     background: #ffffff;
     mix-blend-mode: difference;
-    
     display: flex;
     align-items: center;
     justify-content: center;
-    
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .whatsapp-float svg {
-    /* O ícone também inverte em relação ao fundo do botão */
     fill: #000000;
     transition: transform 0.3s ease;
 }
 
-/* EFEITO HOVER */
 .whatsapp-float:hover {
     transform: translateY(-4px) scale(1.08);
 }
@@ -567,7 +627,6 @@ footer b {
     transform: scale(1.1);
 }
 
-/* AJUSTE PARA MOBILE */
 @media (max-width: 680px) {
     .whatsapp-float {
         bottom: 80px;
@@ -589,24 +648,20 @@ footer b {
 .reveal-right { transform: translateX(40px); }
 .reveal-scale { transform: scale(0.9); }
 
-/* Classe ativada no scroll */
 .active {
   opacity: 1 !important;
   transform: translate(0) scale(1) !important;
 }
 
-/* --- ANIMAÇÃO DAS BARRAS DE SCORE (Audire Fornecedores) --- */
 .score-bars .bar i {
-  width: 0% !important; /* Começa zerada */
+  width: 0% !important;
   transition: width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1);
 }
 
 .score-board.active .bar i {
-  width: var(--target-width) !important; /* Expande até a porcentagem real */
+  width: var(--target-width) !important;
 }
 
-/* --- HOVER VARIADOS POR TIPO DE CARD --- */
-/* Efeito Elevação */
 .impact-card, .pain-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -615,7 +670,6 @@ footer b {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* Efeito Destaque de Borda / Glow (Card em Destaque) */
 .product.featured {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -624,7 +678,6 @@ footer b {
   box-shadow: 0 16px 32px rgba(10, 29, 49, 0.25);
 }
 
-/* --- PULSO E ROTAÇÃO NO RADAR HERO --- */
 @keyframes radarRotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -639,38 +692,30 @@ footer b {
   animation: pulseDot 2s ease-in-out infinite alternate;
 }
 
-@keyframes pulseDot {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(1.3); opacity: 1; }
-}
-
-/* --- SCROLLBAR CUSTOMIZADA E CLEAN --- */
-
-/* Largura da barra de rolagem */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px; /* para scroll horizontal, se houver */
+  height: 8px;
 }
 
-/* Fundo do trilho da scrollbar */
 ::-webkit-scrollbar-track {
-  background: #0a1d31; /* Cor escura alinhada ao fundo do site */
+  background: #0a1d31;
 }
 
-/* O "indicador" (thumb) da scrollbar */
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   transition: background 0.3s ease;
 }
 
-/* Efeito ao passar o mouse ou arrastar */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6b00; /* Laranja da identidade Audire para um toque sutil */
+  background: #ff6b00;
 }
 
-/* Suporte para Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) #0a1d31;
+}
+
+#diagnostico {
+  padding-top: 0;
 }
