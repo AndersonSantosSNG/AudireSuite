@@ -218,7 +218,29 @@ button,input,textarea,select{font:inherit}
 }
 .radar:before{inset:48px}
 .radar:after{inset:-46px;border-style:dashed;animation:spin 24s linear infinite}
-.radar-line{position:absolute;left:50%;top:50%;width:43%;height:1px;transform-origin:left center;background:linear-gradient(90deg,rgba(255,100,0,.82),transparent);animation:spin 5s linear infinite}
+.radar-line {
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    width: 100%; /* Ocupa todo o diâmetro do container para passar pelo centro exato */
+    height: 0;
+    
+    /* Faz o container inteiro girar milimetricamente a partir do centro absoluto */
+    transform-origin: center;
+    animation: spin 5s linear infinite;
+    z-index: 2;
+}
+
+.radar-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%; /* Metade do diâmetro (do centro até a borda) */
+    height: 2px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, rgba(255,100,0,0.95), transparent);
+}
 .radar-center{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
 .radar-center strong{font-size:1.8rem;letter-spacing:-.04em}
 .radar-center small{display:block;color:#9DAFBE}
